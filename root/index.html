@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <title>Physolutions</title>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, user-scalable=no"
+    />
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <!--<link rel="stylesheet" type="text/css" media="screen" href="login.css" />-->
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.7.0/firebase-app.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="https://www.gstatic.com/firebasejs/7.7.0/firebase-analytics.js"></script>
+    <!-- Add Firebase products that you want to use -->
+    <script src="https://www.gstatic.com/firebasejs/7.7.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.7.0/firebase-firestore.js"></script>
+  </head>
+  <body class="landing is-preload">
+    <div id="page-wrapper">
+      <!-- Header -->
+      <header id="header" class="alt">
+        <h1><a href="index.html">Phy</a>solutions</h1>
+        <nav id="nav">
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="notes.html">Notes</a></li>
+            <li><a href="vid.html">Videos</a></li>
+            <li><a href="contact.html">Contact / Feedback</a></li>
+            <li><a href="numerical.html">Numericals</a></li>
+            <li>
+              <a class="icon solid fa-angle-down">MU</a>
+              <ul>
+                <li><a href="sy.html">Syllabus</a></li>
+                <li><a href="cal.html">Calculator</a></li>
+                <li><a>Coming soon</a></li>
+              </ul>
+            </li>
+          </ul>
+        </nav>
+      </header>
+
+      <!-- Banner -->
+      <section id="banner">
+        <h2>Physolutions</h2>
+        <p>Your Physics fright ends here</p>
+        <ul class="actions special">
+          <li><a href="#" class="button primary">Sign Up</a></li>
+          <li>
+            <a href="#" class="button" onclick="mainApp.logOut();"
+              >Learn More</a
+            >
+          </li>
+        </ul>
+      </section>
+
+      <!-- Main -->
+      <section id="main" class="container">
+        <section class="box special">
+          <header class="major">
+            <h2>
+              Introducing the ultimate website
+              <br />
+              for all your physics problems
+            </h2>
+            <p>
+              The only website with genuine solutions and no clickbait.
+              Handpicked solutions by experinced teachers of Mumbai University.
+              Built by the students for the students!!
+            </p>
+          </header>
+          <span class="image featured"><img src=""/></span>
+        </section>
+        <section>
+          <header class="major">
+            <h2>Select a section from below to learn more</h2>
+            <br />
+          </header>
+        </section>
+        <section class="box special features">
+          <div class="features-row">
+            <a href="#">
+              <section>
+                <span class="icon solid major fa-rocket accent2"></span>
+                <h3>Engineering Physics 1</h3>
+                <!---		<p>The combination of two or more electromagnetic waveforms to form a resultant wave in which the displacement is either reinforced or cancelled.</p>  -->
+                <p>Learn More</p>
+              </section>
+            </a>
+            <a href="#">
+              <section>
+                <span class="icon solid major fa-bolt accent3"></span>
+                <h3>Engineering Physics 2</h3>
+                <!---		<p>A discrete quantity of energy proportional in magnitude to the frequency of the radiation it represents.</p> -->
+
+                <p>Learn more</p>
+              </section>
+            </a>
+          </div>
+        </section>
+
+        <!--	<div class="features-row">
+							<section>
+								<span class="icon solid major fa-cloud accent4"></span>
+								<h3>Stay Tuned!!</h3>
+								<p></p>
+							</section>
+							<section>
+								<span class="icon solid major fa-lock accent5"></span>
+								<h3>Coming Soon..</h3>
+								<p></p>
+							</section>
+						</div>
+					</section>  -->
+      </section>
+
+      <!-- CTA -->
+      <section id="cta" style="padding-bottom: 10%;">
+        <h2>Initiative By</h2>
+        <img src="images/logo.png" style="width: 32rem; height: 12rem;" />
+        <form>
+          <ul class="actions special">
+            <li>
+              <a href="http://www.shahandanchor.com/home/" class="button alt">
+                More about SAKEC</a
+              >
+            </li>
+            <li>
+              <a href="tel:+91 22 2558 0854" class="button alt">
+                Contact SAKEC</a
+              >
+            </li>
+          </ul>
+        </form>
+      </section>
+
+      <section id="main" class="container" style="padding-top: 10%;">
+        <div class="row">
+          <div class="col-6 col-12-narrower">
+            <a href="notes.html">
+              <section class="box special">
+                <h3>Notes</h3>
+                <span class="image featured"
+                  ><img src="images/notes.jpeg"
+                /></span>
+                <p style="color: gray;">
+                  A brief record of points written down as an aid to memory.
+                </p>
+                <ul class="actions special">
+                  <li><a href="notes.html" class="button alt"> More</a></li>
+                </ul>
+              </section>
+            </a>
+          </div>
+          <div class="col-6 col-12-narrower">
+            <a href="vid.html">
+              <section class="box special">
+                <h3>Video Lectures</h3>
+                <span class="image featured"
+                  ><img src="images/vid1.jpeg"
+                /></span>
+                <p style="color: gray;">
+                  The best way to understand a concept.
+                </p>
+                <ul class="actions special">
+                  <li><a href="vid.html" class="button alt">More</a></li>
+                </ul>
+              </section>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- Footer -->
+      <footer id="footer">
+        <ul class="icons">
+          <li>
+            <a href="#" class="icon brands fa-twitter"
+              ><span class="label">Twitter</span></a
+            >
+          </li>
+          <li>
+            <a href="#" class="icon brands fa-facebook-f"
+              ><span class="label">Facebook</span></a
+            >
+          </li>
+          <li>
+            <a href="#" class="icon brands fa-instagram"
+              ><span class="label">Instagram</span></a
+            >
+          </li>
+        </ul>
+        <ul class="copyright">
+          <li>&copy; Untitled. All rights reserved.</li>
+          <li>Design: <a href="#">Krutik Patel & Amit Ramani</a></li>
+        </ul>
+      </footer>
+    </div>
+
+    <!-- Scripts -->
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/jquery.dropotron.min.js"></script>
+    <script src="assets/js/jquery.scrollex.min.js"></script>
+    <script src="assets/js/browser.min.js"></script>
+    <script src="assets/js/breakpoints.min.js"></script>
+    <script src="assets/js/util.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/fireBase.js"></script>
+	<script src="assets/js/auth.js"></script>
+	
+  </body>
+</html>
