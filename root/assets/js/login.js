@@ -16,8 +16,8 @@
       }
     },
     // Will use popup for IDP Providers sign-in flow instead of the default, redirect.
-    signInFlow: "popup",
-    signInSuccessUrl: "index.html",
+    signInFlow: "redirect",
+    signInSuccessUrl: "login2.html",
     signInOptions: [
       {
         provider: firebase.auth.PhoneAuthProvider.PROVIDER_ID,

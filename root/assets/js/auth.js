@@ -9,7 +9,9 @@ var mainApp = {};
     } else {
       // redirect to login
       uid = null;
-      window.location.replace("login.html");
+
+      window.location.replace("index.html");
+      alert("Please Sign in or Sign up");
     }
   });
   function logOut() {
