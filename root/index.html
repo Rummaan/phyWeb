@@ -1,205 +1,218 @@
 <!DOCTYPE html>
 
 <html>
-  <head>
-    <title>Physolutions</title>
-    <meta charset="utf-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, user-scalable=no"
-    />
-    <link rel="stylesheet" href="assets/css/main.css" />
-    <!--<link rel="stylesheet" type="text/css" media="screen" href="login.css" />-->
-    <!-- The core Firebase JS SDK is always required and must be listed first -->
-    <script src="https://www.gstatic.com/firebasejs/7.7.0/firebase-app.js"></script>
+    <head>
+        <title>Physolutions</title>
+        <meta charset="utf-8" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1, user-scalable=no"
+        />
+        <link rel="stylesheet" href="assets/css/main.css" />
+        <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
+        <script src="https://www.gstatic.com/firebasejs/7.19.0/firebase-app.js"></script>
 
-    <!-- TODO: Add SDKs for Firebase products that you want to use
-     https://firebase.google.com/docs/web/setup#available-libraries -->
-    <script src="https://www.gstatic.com/firebasejs/7.7.0/firebase-analytics.js"></script>
-    <!-- Add Firebase products that you want to use -->
-    <script src="https://www.gstatic.com/firebasejs/7.7.0/firebase-auth.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/7.7.0/firebase-firestore.js"></script>
-    <script type="text/javascript">
-      /**
-       * Function called when clicking the Login/Logout button.
-       */
-      // [START buttoncallback]
-      function toggleSignIn() {
-        if (!firebase.auth().currentUser) {
-          // [START createprovider]
+        <!-- If you enabled Analytics in your project, add the Firebase SDK for Analytics -->
+        <script src="https://www.gstatic.com/firebasejs/7.19.0/firebase-analytics.js"></script>
 
-          var provider = new firebase.auth.GoogleAuthProvider();
-          // [END createprovider]
-          // [START addscopes]
-          provider.addScope("https://www.googleapis.com/auth/plus.login");
-          // [END addscopes]
-          // [START signin]
-          firebase.auth().signInWithRedirect(provider);
-          // [END signin]
-        } else {
-          // [START signout]
-          firebase.auth().signOut();
-          // [END signout]
-        }
-        // [START_EXCLUDE]
-        document.getElementById("quickstart-sign-in").disabled = true;
-        // [END_EXCLUDE]
-      }
-      // [END buttoncallback]
+        <!-- Add Firebase products that you want to use -->
+        <script src="https://www.gstatic.com/firebasejs/7.19.0/firebase-auth.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/7.19.0/firebase-firestore.js"></script>
+        <script type="text/javascript">
+            /**
+             * Function called when clicking the Login/Logout button.
+             */
+            // [START buttoncallback]
+            function toggleSignIn() {
+                if (!firebase.auth().currentUser) {
+                    // [START createprovider]
 
-      /**
-       * initApp handles setting up UI event listeners and registering Firebase auth listeners:
-       *  - firebase.auth().onAuthStateChanged: This listener is called when the user is signed in or
-       *    out, and that is where we update the UI.
-       *  - firebase.auth().getRedirectResult(): This promise completes when the user gets back from
-       *    the auth redirect flow. It is where you can get the OAuth access token from the IDP.
-       */
-      function initApp() {
-        // Result from Redirect auth flow.
-        // [START getidptoken]
+                    var provider = new firebase.auth.GoogleAuthProvider();
+                    // [END createprovider]
+                    // [START addscopes]
+                    provider.addScope(
+                        "https://www.googleapis.com/auth/plus.login"
+                    );
+                    // [END addscopes]
+                    // [START signin]
+                    firebase.auth().signInWithRedirect(provider);
+                    // [END signin]
+                } else {
+                    // [START signout]
+                    firebase.auth().signOut();
+                    // [END signout]
+                }
+                // [START_EXCLUDE]
+                document.getElementById("quickstart-sign-in").disabled = true;
+                // [END_EXCLUDE]
+            }
+            // [END buttoncallback]
 
-        // [END getidptoken]
+            /**
+             * initApp handles setting up UI event listeners and registering Firebase auth listeners:
+             *  - firebase.auth().onAuthStateChanged: This listener is called when the user is signed in or
+             *    out, and that is where we update the UI.
+             *  - firebase.auth().getRedirectResult(): This promise completes when the user gets back from
+             *    the auth redirect flow. It is where you can get the OAuth access token from the IDP.
+             */
+            function initApp() {
+                // Result from Redirect auth flow.
+                // [START getidptoken]
 
-        // Listening for auth state changes.
-        // [START authstatelistener]
-        firebase.auth().onAuthStateChanged(function(user) {
-          if (user) {
-            // User is signed in.
-            var displayName = user.displayName;
-            var email = user.email;
-            var emailVerified = user.emailVerified;
-            var photoURL = user.photoURL;
-            var isAnonymous = user.isAnonymous;
-            var uid = user.uid;
-            var providerData = user.providerData;
-            var phoneNumber = user.phoneNumber;
-            // [START_EXCLUDE]
-            if (phoneNumber == null) {
-              var user = firebase.auth().currentUser;
+                // [END getidptoken]
 
-              user
-                .delete()
-                .then(function() {
-                  // User deleted.
-                })
-                .catch(function(error) {
-                  // An error happened.
+                // Listening for auth state changes.
+                // [START authstatelistener]
+                firebase.auth().onAuthStateChanged(function (user) {
+                    if (user) {
+                        // User is signed in.
+                        var displayName = user.displayName;
+                        var email = user.email;
+                        var emailVerified = user.emailVerified;
+                        var photoURL = user.photoURL;
+                        var isAnonymous = user.isAnonymous;
+                        var uid = user.uid;
+                        var providerData = user.providerData;
+                        var phoneNumber = user.phoneNumber;
+                        // [START_EXCLUDE]
+                        if (phoneNumber == null) {
+                            var user = firebase.auth().currentUser;
+
+                            user.delete()
+                                .then(function () {
+                                    // User deleted.
+                                })
+                                .catch(function (error) {
+                                    // An error happened.
+                                });
+
+                            alert("Please Sign up");
+                        }
+
+                        document.getElementById(
+                            "quickstart-sign-in"
+                        ).textContent = "Sign out";
+
+                        // [END_EXCLUDE]
+                    } else {
+                        // User is signed out.
+                        // [START_EXCLUDE]
+
+                        document.getElementById(
+                            "quickstart-sign-in"
+                        ).textContent = "Sign in";
+
+                        // [END_EXCLUDE]
+                    }
+                    // [START_EXCLUDE]
+                    document.getElementById(
+                        "quickstart-sign-in"
+                    ).disabled = false;
+                    // [END_EXCLUDE]
                 });
+                // [END authstatelistener]
 
-              alert("Please Sign up");
+                document
+                    .getElementById("quickstart-sign-in")
+                    .addEventListener("click", toggleSignIn, false);
             }
 
-            document.getElementById("quickstart-sign-in").textContent =
-              "Sign out";
+            window.onload = function () {
+                initApp();
+            };
+        </script>
+    </head>
+    <body class="landing is-preload">
+        <div id="page-wrapper">
+            <!-- Header -->
+            <header id="header" class="alt">
+                <h1><a href="index.html">Phy</a>solutions</h1>
+                <nav id="nav">
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="notes.html">Notes</a></li>
+                        <li><a href="vid.html">Videos</a></li>
+                        <li><a href="contact.html">Contact / Feedback</a></li>
+                        <li><a href="numerical.html">Numericals</a></li>
+                        <li>
+                            <a class="icon solid fa-angle-down">MU</a>
+                            <ul>
+                                <li><a href="sy.html">Syllabus</a></li>
+                                <li><a href="cal.html">Calculator</a></li>
+                                <li><a>Coming soon</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </nav>
+            </header>
 
-            // [END_EXCLUDE]
-          } else {
-            // User is signed out.
-            // [START_EXCLUDE]
+            <!-- Banner -->
+            <section id="banner">
+                <h2>Physolutions</h2>
+                <p>Your Physics fright ends here</p>
+                <ul class="actions special">
+                    <li>
+                        <a href="login.html" class="button primary">Sign Up</a>
+                    </li>
+                    <li>
+                        <a href="#" class="button" id="quickstart-sign-in"
+                            >Waiting</a
+                        >
+                    </li>
+                </ul>
+            </section>
 
-            document.getElementById("quickstart-sign-in").textContent =
-              "Sign in";
+            <!-- Main -->
+            <section id="main" class="container">
+                <section class="box special">
+                    <header class="major">
+                        <h2>
+                            Introducing the ultimate website
+                            <br />
+                            for all your physics problems
+                        </h2>
+                        <p>
+                            The only website with genuine solutions and no
+                            clickbait. Handpicked solutions by experinced
+                            teachers of Mumbai University. Built by the students
+                            for the students!!
+                        </p>
+                    </header>
+                    <span class="image featured"><img src="" /></span>
+                </section>
+                <section>
+                    <header class="major">
+                        <h2>Select a section from below to learn more</h2>
+                        <br />
+                    </header>
+                </section>
+                <section class="box special features">
+                    <div class="features-row">
+                        <a href="sem1.html">
+                            <section>
+                                <span
+                                    class="icon solid major fa-rocket accent2"
+                                ></span>
+                                <h3>Engineering Physics 1</h3>
+                                <!---		<p>The combination of two or more electromagnetic waveforms to form a resultant wave in which the displacement is either reinforced or cancelled.</p>  -->
+                                <p>Learn More</p>
+                            </section>
+                        </a>
+                        <a href="#">
+                            <section>
+                                <span
+                                    class="icon solid major fa-bolt accent3"
+                                ></span>
+                                <h3>Engineering Physics 2</h3>
+                                <!---		<p>A discrete quantity of energy proportional in magnitude to the frequency of the radiation it represents.</p> -->
 
-            // [END_EXCLUDE]
-          }
-          // [START_EXCLUDE]
-          document.getElementById("quickstart-sign-in").disabled = false;
-          // [END_EXCLUDE]
-        });
-        // [END authstatelistener]
+                                <p>Learn more</p>
+                            </section>
+                        </a>
+                    </div>
+                </section>
 
-        document
-          .getElementById("quickstart-sign-in")
-          .addEventListener("click", toggleSignIn, false);
-      }
-
-      window.onload = function() {
-        initApp();
-      };
-    </script>
-  </head>
-  <body class="landing is-preload">
-    <div id="page-wrapper">
-      <!-- Header -->
-      <header id="header" class="alt">
-        <h1><a href="index.html">Phy</a>solutions</h1>
-        <nav id="nav">
-          <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="notes.html">Notes</a></li>
-            <li><a href="vid.html">Videos</a></li>
-            <li><a href="contact.html">Contact / Feedback</a></li>
-            <li><a href="numerical.html">Numericals</a></li>
-            <li>
-              <a class="icon solid fa-angle-down">MU</a>
-              <ul>
-                <li><a href="sy.html">Syllabus</a></li>
-                <li><a href="cal.html">Calculator</a></li>
-                <li><a>Coming soon</a></li>
-              </ul>
-            </li>
-          </ul>
-        </nav>
-      </header>
-
-      <!-- Banner -->
-      <section id="banner">
-        <h2>Physolutions</h2>
-        <p>Your Physics fright ends here</p>
-        <ul class="actions special">
-          <li><a href="login.html" class="button primary">Sign Up</a></li>
-          <li>
-            <a href="#" class="button" id="quickstart-sign-in">Waiting</a>
-          </li>
-        </ul>
-      </section>
-
-      <!-- Main -->
-      <section id="main" class="container">
-        <section class="box special">
-          <header class="major">
-            <h2>
-              Introducing the ultimate website
-              <br />
-              for all your physics problems
-            </h2>
-            <p>
-              The only website with genuine solutions and no clickbait.
-              Handpicked solutions by experinced teachers of Mumbai University.
-              Built by the students for the students!!
-            </p>
-          </header>
-          <span class="image featured"><img src=""/></span>
-        </section>
-        <section>
-          <header class="major">
-            <h2>Select a section from below to learn more</h2>
-            <br />
-          </header>
-        </section>
-        <section class="box special features">
-          <div class="features-row">
-            <a href="sem1.html">
-              <section>
-                <span class="icon solid major fa-rocket accent2"></span>
-                <h3>Engineering Physics 1</h3>
-                <!---		<p>The combination of two or more electromagnetic waveforms to form a resultant wave in which the displacement is either reinforced or cancelled.</p>  -->
-                <p>Learn More</p>
-              </section>
-            </a>
-            <a href="#">
-              <section>
-                <span class="icon solid major fa-bolt accent3"></span>
-                <h3>Engineering Physics 2</h3>
-                <!---		<p>A discrete quantity of energy proportional in magnitude to the frequency of the radiation it represents.</p> -->
-
-                <p>Learn more</p>
-              </section>
-            </a>
-          </div>
-        </section>
-
-        <!--	<div class="features-row">
+                <!--	<div class="features-row">
 							<section>
 								<span class="icon solid major fa-cloud accent4"></span>
 								<h3>Stay Tuned!!</h3>
@@ -212,99 +225,114 @@
 							</section>
 						</div>
 					</section>  -->
-      </section>
+            </section>
 
-      <!-- CTA -->
-      <section id="cta" style="padding-bottom: 10%;">
-        <h2>Initiative By</h2>
-        <img src="images/logo.png" style="width: 32rem; height: 12rem;" />
-        <form>
-          <ul class="actions special">
-            <li>
-              <a href="http://www.shahandanchor.com/home/" class="button alt">
-                More about SAKEC</a
-              >
-            </li>
-            <li>
-              <a href="tel:+91 22 2558 0854" class="button alt">
-                Contact SAKEC</a
-              >
-            </li>
-          </ul>
-        </form>
-      </section>
+            <!-- CTA -->
+            <section id="cta" style="padding-bottom: 10%">
+                <h2>Initiative By</h2>
+                <img
+                    src="images/logo.png"
+                    style="width: 32rem; height: 12rem"
+                />
+                <form>
+                    <ul class="actions special">
+                        <li>
+                            <a
+                                href="http://www.shahandanchor.com/home/"
+                                class="button alt"
+                            >
+                                More about SAKEC</a
+                            >
+                        </li>
+                        <li>
+                            <a href="tel:+91 22 2558 0854" class="button alt">
+                                Contact SAKEC</a
+                            >
+                        </li>
+                    </ul>
+                </form>
+            </section>
 
-      <section id="main" class="container" style="padding-top: 10%;">
-        <div class="row">
-          <div class="col-6 col-12-narrower">
-            <a href="notes.html">
-              <section class="box special">
-                <h3>Notes</h3>
-                <span class="image featured"
-                  ><img src="images/notes.jpeg"
-                /></span>
-                <p style="color: gray;">
-                  A brief record of points written down as an aid to memory.
-                </p>
-                <ul class="actions special">
-                  <li><a href="notes.html" class="button alt"> More</a></li>
+            <section id="main" class="container" style="padding-top: 10%">
+                <div class="row">
+                    <div class="col-6 col-12-narrower">
+                        <a href="notes.html">
+                            <section class="box special">
+                                <h3>Notes</h3>
+                                <span class="image featured"
+                                    ><img src="images/notes.jpeg"
+                                /></span>
+                                <p style="color: gray">
+                                    A brief record of points written down as an
+                                    aid to memory.
+                                </p>
+                                <ul class="actions special">
+                                    <li>
+                                        <a href="notes.html" class="button alt">
+                                            More</a
+                                        >
+                                    </li>
+                                </ul>
+                            </section>
+                        </a>
+                    </div>
+                    <div class="col-6 col-12-narrower">
+                        <a href="vid.html">
+                            <section class="box special">
+                                <h3>Video Lectures</h3>
+                                <span class="image featured"
+                                    ><img src="images/vid1.jpeg"
+                                /></span>
+                                <p style="color: gray">
+                                    The best way to understand a concept.
+                                </p>
+                                <ul class="actions special">
+                                    <li>
+                                        <a href="vid.html" class="button alt"
+                                            >More</a
+                                        >
+                                    </li>
+                                </ul>
+                            </section>
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Footer -->
+            <footer id="footer">
+                <ul class="icons">
+                    <li>
+                        <a href="#" class="icon brands fa-twitter"
+                            ><span class="label">Twitter</span></a
+                        >
+                    </li>
+                    <li>
+                        <a href="#" class="icon brands fa-facebook-f"
+                            ><span class="label">Facebook</span></a
+                        >
+                    </li>
+                    <li>
+                        <a href="#" class="icon brands fa-instagram"
+                            ><span class="label">Instagram</span></a
+                        >
+                    </li>
                 </ul>
-              </section>
-            </a>
-          </div>
-          <div class="col-6 col-12-narrower">
-            <a href="vid.html">
-              <section class="box special">
-                <h3>Video Lectures</h3>
-                <span class="image featured"
-                  ><img src="images/vid1.jpeg"
-                /></span>
-                <p style="color: gray;">
-                  The best way to understand a concept.
-                </p>
-                <ul class="actions special">
-                  <li><a href="vid.html" class="button alt">More</a></li>
+                <ul class="copyright">
+                    <li>&copy; Untitled. All rights reserved.</li>
+                    <li>Design: <a href="#">Krutik Patel & Amit Ramani</a></li>
                 </ul>
-              </section>
-            </a>
-          </div>
+            </footer>
         </div>
-      </section>
 
-      <!-- Footer -->
-      <footer id="footer">
-        <ul class="icons">
-          <li>
-            <a href="#" class="icon brands fa-twitter"
-              ><span class="label">Twitter</span></a
-            >
-          </li>
-          <li>
-            <a href="#" class="icon brands fa-facebook-f"
-              ><span class="label">Facebook</span></a
-            >
-          </li>
-          <li>
-            <a href="#" class="icon brands fa-instagram"
-              ><span class="label">Instagram</span></a
-            >
-          </li>
-        </ul>
-        <ul class="copyright">
-          <li>&copy; Untitled. All rights reserved.</li>
-          <li>Design: <a href="#">Krutik Patel & Amit Ramani</a></li>
-        </ul>
-      </footer>
-    </div>
-
-    <!-- Scripts -->
-    <script src="assets/js/jquery.min.js"></script>
-    <script src="assets/js/jquery.dropotron.min.js"></script>
-    <script src="assets/js/jquery.scrollex.min.js"></script>
-    <script src="assets/js/browser.min.js"></script>
-    <script src="assets/js/breakpoints.min.js"></script>
-    <script src="assets/js/util.js"></script>
-    <script src="assets/js/main.js"></script>
-    <script src="assets/js/fireBase.js"></script>
-  </body>
+        <!-- Scripts -->
+        <script src="assets/js/jquery.min.js"></script>
+        <script src="assets/js/jquery.dropotron.min.js"></script>
+        <script src="assets/js/jquery.scrollex.min.js"></script>
+        <script src="assets/js/browser.min.js"></script>
+        <script src="assets/js/breakpoints.min.js"></script>
+        <script src="assets/js/util.js"></script>
+        <script src="assets/js/main.js"></script>
+        <script src="assets/js/fireBase.js"></script>
+    </body>
 </html>

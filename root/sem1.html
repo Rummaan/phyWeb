@@ -1,148 +1,149 @@
 <!DOCTYPE html>
 
 <html>
-  <head>
-    <title>Engineering Physics I</title>
-    <meta charset="utf-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, user-scalable=no"
-    />
-    <link rel="stylesheet" href="assets/css/main.css" />
-    <!-- The core Firebase JS SDK is always required and must be listed first -->
-    <script src="https://www.gstatic.com/firebasejs/7.7.0/firebase-app.js"></script>
+    <head>
+        <title>Engineering Physics I</title>
+        <meta charset="utf-8" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1, user-scalable=no"
+        />
+        <link rel="stylesheet" href="assets/css/main.css" />
+        <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
+        <script src="https://www.gstatic.com/firebasejs/7.19.0/firebase-app.js"></script>
 
-    <!-- TODO: Add SDKs for Firebase products that you want to use
-			 https://firebase.google.com/docs/web/setup#available-libraries -->
-    <script src="https://www.gstatic.com/firebasejs/7.7.0/firebase-analytics.js"></script>
-    <!-- Add Firebase products that you want to use -->
-    <script src="https://www.gstatic.com/firebasejs/7.7.0/firebase-auth.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/7.7.0/firebase-firestore.js"></script>
-  </head>
-  <body class="is-preload">
-    <div id="page-wrapper">
-      <!-- Header -->
-      <header id="header">
-        <h1><a href="index.html">Phy</a>solutions</h1>
-        <nav id="nav">
-          <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="notes.html">Notes</a></li>
-            <li><a href="vid.html">Videos</a></li>
-            <li><a href="contact.html">Contact / Feedback</a></li>
-            <li><a href="numerical.html">Numericals</a></li>
-            <li>
-              <a class="icon solid fa-angle-down">MU</a>
-              <ul>
-                <li><a href="sy.html">Syllabus</a></li>
-                <li><a href="cal.html">Calculator</a></li>
-                <li><a>Coming soon</a></li>
-              </ul>
-            </li>
-          </ul>
-        </nav>
-      </header>
+        <!-- If you enabled Analytics in your project, add the Firebase SDK for Analytics -->
+        <script src="https://www.gstatic.com/firebasejs/7.19.0/firebase-analytics.js"></script>
 
-      <!-- Main -->
-      <section id="main" class="container">
-        <header>
-          <h2>Engineering Physics I</h2>
-          <p>
-            A well written chapterwise notes for Engineering Physics I.
-          </p>
-        </header>
-        <div class="box">
-          <h2>Diffraction</h2>
-          <embed
-            src="fwdfinalnotespdfs/1_Diffraction_notes_23_1.pdf"
-            type="application/pdf"
-            width="100%"
-            height="450px"
-          />
-          <h2>laser</h2>
-          <embed
-            src="fwdfinalnotespdfs/2a_Laser_notes_23_1.pdf"
-            type="application/pdf"
-            width="100%"
-            height="450px"
-          />
+        <!-- Add Firebase products that you want to use -->
+        <script src="https://www.gstatic.com/firebasejs/7.19.0/firebase-auth.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/7.19.0/firebase-firestore.js"></script>
+    </head>
+    <body class="is-preload">
+        <div id="page-wrapper">
+            <!-- Header -->
+            <header id="header">
+                <h1><a href="index.html">Phy</a>solutions</h1>
+                <nav id="nav">
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="notes.html">Notes</a></li>
+                        <li><a href="vid.html">Videos</a></li>
+                        <li><a href="contact.html">Contact / Feedback</a></li>
+                        <li><a href="numerical.html">Numericals</a></li>
+                        <li>
+                            <a class="icon solid fa-angle-down">MU</a>
+                            <ul>
+                                <li><a href="sy.html">Syllabus</a></li>
+                                <li><a href="cal.html">Calculator</a></li>
+                                <li><a>Coming soon</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </nav>
+            </header>
 
-          <h2>Fibre Optics</h2>
-          <embed
-            src="fwdfinalnotespdfs/2b_fibreoptics_notes_23_1.pdf"
-            type="application/pdf"
-            width="100%"
-            height="450px"
-          />
+            <!-- Main -->
+            <section id="main" class="container">
+                <header>
+                    <h2>Engineering Physics I</h2>
+                    <p>
+                        A well written chapterwise notes for Engineering Physics
+                        I.
+                    </p>
+                </header>
+                <div class="box">
+                    <h2>Diffraction</h2>
+                    <embed
+                        src="fwdfinalnotespdfs/1_Diffraction_notes_23_1.pdf"
+                        type="application/pdf"
+                        width="100%"
+                        height="450px"
+                    />
+                    <h2>laser</h2>
+                    <embed
+                        src="fwdfinalnotespdfs/2a_Laser_notes_23_1.pdf"
+                        type="application/pdf"
+                        width="100%"
+                        height="450px"
+                    />
 
-          <h2>Electrodynamics</h2>
-          <embed
-            src="fwdfinalnotespdfs/3_Electrodynamics_notes_23_1.pdf"
-            type="application/pdf"
-            width="100%"
-            height="450px;"
-          />
+                    <h2>Fibre Optics</h2>
+                    <embed
+                        src="fwdfinalnotespdfs/2b_fibreoptics_notes_23_1.pdf"
+                        type="application/pdf"
+                        width="100%"
+                        height="450px"
+                    />
 
-          <h2>Relativity</h2>
-          <embed
-            src="fwdfinalnotespdfs/4_Relativity_notes.pdf"
-            type="application/pdf"
-            width="100%"
-            height="450px"
-          />
+                    <h2>Electrodynamics</h2>
+                    <embed
+                        src="fwdfinalnotespdfs/3_Electrodynamics_notes_23_1.pdf"
+                        type="application/pdf"
+                        width="100%"
+                        height="450px;"
+                    />
 
-          <h2>Nanotechnology</h2>
-          <embed
-            src="fwdfinalnotespdfs/5_Nanotechnology_notes_23_1.pdf"
-            type="application/pdf"
-            width="100%"
-            height="450px;"
-          />
-          <h2>Physics of sensors</h2>
-          <embed
-            src="fwdfinalnotespdfs/6_Physicsofsensors_notes_23_1.pdf"
-            type="application/pdf"
-            width="100%"
-            height="450px;"
-          />
+                    <h2>Relativity</h2>
+                    <embed
+                        src="fwdfinalnotespdfs/4_Relativity_notes.pdf"
+                        type="application/pdf"
+                        width="100%"
+                        height="450px"
+                    />
+
+                    <h2>Nanotechnology</h2>
+                    <embed
+                        src="fwdfinalnotespdfs/5_Nanotechnology_notes_23_1.pdf"
+                        type="application/pdf"
+                        width="100%"
+                        height="450px;"
+                    />
+                    <h2>Physics of sensors</h2>
+                    <embed
+                        src="fwdfinalnotespdfs/6_Physicsofsensors_notes_23_1.pdf"
+                        type="application/pdf"
+                        width="100%"
+                        height="450px;"
+                    />
+                </div>
+            </section>
+
+            <!-- Footer -->
+            <footer id="footer">
+                <ul class="icons">
+                    <li>
+                        <a href="#" class="icon brands fa-twitter"
+                            ><span class="label">Twitter</span></a
+                        >
+                    </li>
+                    <li>
+                        <a href="#" class="icon brands fa-facebook-f"
+                            ><span class="label">Facebook</span></a
+                        >
+                    </li>
+                    <li>
+                        <a href="#" class="icon brands fa-instagram"
+                            ><span class="label">Instagram</span></a
+                        >
+                    </li>
+                </ul>
+                <ul class="copyright">
+                    <li>&copy; Untitled. All rights reserved.</li>
+                    <li>Design: <a href="#">Krutik Patel & Amit</a></li>
+                </ul>
+            </footer>
         </div>
-      </section>
 
-      <!-- Footer -->
-      <footer id="footer">
-        <ul class="icons">
-          <li>
-            <a href="#" class="icon brands fa-twitter"
-              ><span class="label">Twitter</span></a
-            >
-          </li>
-          <li>
-            <a href="#" class="icon brands fa-facebook-f"
-              ><span class="label">Facebook</span></a
-            >
-          </li>
-          <li>
-            <a href="#" class="icon brands fa-instagram"
-              ><span class="label">Instagram</span></a
-            >
-          </li>
-        </ul>
-        <ul class="copyright">
-          <li>&copy; Untitled. All rights reserved.</li>
-          <li>Design: <a href="#">Krutik Patel & Amit</a></li>
-        </ul>
-      </footer>
-    </div>
-
-    <!-- Scripts -->
-    <script src="assets/js/jquery.min.js"></script>
-    <script src="assets/js/jquery.dropotron.min.js"></script>
-    <script src="assets/js/jquery.scrollex.min.js"></script>
-    <script src="assets/js/browser.min.js"></script>
-    <script src="assets/js/breakpoints.min.js"></script>
-    <script src="assets/js/util.js"></script>
-    <script src="assets/js/main.js"></script>
-    <script src="assets/js/fireBase.js"></script>
-    <script src="assets/js/auth.js"></script>
-  </body>
+        <!-- Scripts -->
+        <script src="assets/js/jquery.min.js"></script>
+        <script src="assets/js/jquery.dropotron.min.js"></script>
+        <script src="assets/js/jquery.scrollex.min.js"></script>
+        <script src="assets/js/browser.min.js"></script>
+        <script src="assets/js/breakpoints.min.js"></script>
+        <script src="assets/js/util.js"></script>
+        <script src="assets/js/main.js"></script>
+        <script src="assets/js/fireBase.js"></script>
+        <script src="assets/js/auth.js"></script>
+    </body>
 </html>
