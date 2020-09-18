@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>Physolutions-Notes</title>
+        <meta charset="utf-8" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1, user-scalable=no"
+        />
+        <link rel="stylesheet" href="assets/css/main.css" />
+        <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
+        <script src="https://www.gstatic.com/firebasejs/7.19.0/firebase-app.js"></script>
+
+        <!-- If you enabled Analytics in your project, add the Firebase SDK for Analytics -->
+        <script src="https://www.gstatic.com/firebasejs/7.19.0/firebase-analytics.js"></script>
+
+        <!-- Add Firebase products that you want to use -->
+        <script src="https://www.gstatic.com/firebasejs/7.19.0/firebase-auth.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/7.19.0/firebase-firestore.js"></script>
+    </head>
+    <body class="is-preload">
+        <div id="page-wrapper">
+            <!-- Header -->
+            <header id="header">
+                <h1><a href="index.html">Phy</a>solutions</h1>
+                <nav id="nav">
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="notes.html">Notes</a></li>
+                        <li><a href="vid.html">Videos</a></li>
+                        <li><a href="contact.html">Contact / Feedback</a></li>
+                        <li><a href="numerical.html">Numericals</a></li>
+                        <li>
+                            <a class="icon solid fa-angle-down">MU</a>
+                            <ul>
+                                <li><a href="sy.html">Syllabus</a></li>
+                                <li><a href="cal.html">Calculator</a></li>
+                                <li><a>Coming soon</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </nav>
+            </header>
+
+            <!-- Main -->
+            <section id="main" class="container">
+                <header>
+                    <h2>Notes</h2>
+                    <p>
+                        Engineering Physics 2
+                    </p>
+                </header>
+                <div class="box">
+                    <span class="image featured"
+                        ><img src="images/spiral.jpg"
+                    /></span>
+                    <h2>Relativity</h2>
+                    <embed
+                        src="docs/Relativity theory.pdf"
+                        type="application/pdf"
+                        width="100%"
+                        height="300px"
+                    />
+
+                    <h2>Laser</h2>
+                    <embed
+                        src="docs/laser.pdf"
+                        type="application/pdf"
+                        width="100%"
+                        height="300px"
+                    />
+
+                    <h2>Optical Fiber</h2>
+                    <embed
+                        src="docs/optical fibre.pdf"
+                        type="application/pdf"
+                        width="100%"
+                        height="300px"
+                    />
+                    <br><br><br>
+                    <hr>
+                    <h2>Discussion </h2>
+
+                    <div class="row gtr-uniform gtr-50">
+                        <div class="col-9 col-12-mobilep">
+                            <input
+                                type="text"
+                                name="query"
+                                id="query"
+                                value=""
+                                placeholder="Post a Question"
+                            />
+                        </div>
+                        <div class="col-3 col-12-mobilep">
+                            <input
+                                type="submit"
+                                value="Submit"
+                                class="fit"
+                            />
+                        </div>
+                    </div>
+                    <br><br>
+                    <h3>Previous Comments</h3>
+                            <div class="ques">
+                                <blockquote>
+                                    <h4 style="font-weight: bold;">Amit Ramani</h4>
+                                    My doubt. Donec accumsan interdum nisi,
+                                    quis tincidunt felis sagittis eget tempus
+                                    euismod. tincidunt felis sagittis eget tempus
+                                    euismod.
+                                    <br><br>  
+                                    <a href="#" class="button alt small reply">Reply</a>
+
+                                    <br><br>
+                                    <blockquote>
+                                    <h4 style="font-weight: bold;">Krutik</h4>
+                                    reply ans 1
+                                    </blockquote>
+                                   
+                                    <blockquote>
+                                        <h4 style="font-weight: bold;">Ruudra</h4>
+                                        reply ans 2
+                                    </blockquote>
+                                    
+                                </blockquote>
+                                <hr>
+                                <blockquote>
+                                    <h4 style="font-weight: bold;">Name 2</h4>
+                                    My doubt 2. Donec accumsan interdum nisi,
+                                    quis tincidunt felis sagittis eget tempus
+                                    euismod.
+                                    <br><br>  
+                                    <a href="#" class="button alt small reply">Reply</a>
+                                </blockquote>
+                                <hr>
+                                <blockquote>
+                                    <h4 style="font-weight: bold;">Name 2</h4>
+                                    My doubt 2. Donec accumsan interdum nisi,
+                                    quis tincidunt felis sagittis eget tempus
+                                    euismod.
+                                    <br><br>  
+                                    <a href="#" class="button alt small reply">Reply</a>
+                                </blockquote>
+                            </div>
+
+
+
+
+                </div>
+            </section>
+
+            <!-- Footer -->
+            <footer id="footer">
+                <ul class="icons">
+                    <li>
+                        <a href="#" class="icon brands fa-twitter"
+                            ><span class="label">Twitter</span></a
+                        >
+                    </li>
+                    <li>
+                        <a href="#" class="icon brands fa-facebook-f"
+                            ><span class="label">Facebook</span></a
+                        >
+                    </li>
+                    <li>
+                        <a href="#" class="icon brands fa-instagram"
+                            ><span class="label">Instagram</span></a
+                        >
+                    </li>
+                </ul>
+                <ul class="copyright">
+                    <li>&copy; Untitled. All rights reserved.</li>
+                    <li>Design: <a href="#">Krutik Patel & Amit</a></li>
+                </ul>
+            </footer>
+        </div>
+
+        <!-- Scripts -->
+        <script src="assets/js/jquery.min.js"></script>
+        <script src="assets/js/jquery.dropotron.min.js"></script>
+        <script src="assets/js/jquery.scrollex.min.js"></script>
+        <script src="assets/js/browser.min.js"></script>
+        <script src="assets/js/breakpoints.min.js"></script>
+        <script src="assets/js/util.js"></script>
+        <script src="assets/js/main.js"></script>
+        <script src="assets/js/fireBase.js"></script>
+        <script src="assets/js/auth.js"></script>
+    </body>
+</html>

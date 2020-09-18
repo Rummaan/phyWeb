@@ -209,12 +209,23 @@
 		}
 
 	blockquote {
-		border-left: solid 4px #e5e5e5;
-		font-style: italic;
+		
+		
 		margin: 0 0 2em 0;
 		padding: 0.5em 0 0.5em 2em;
 	}
-
+.ans blockquote {
+	
+	border-left: solid 4px;
+	border-color: #e4886a;
+	margin: 0 0 2em 0;
+	padding: 0.5em 0.5em 0.5em 2em;
+}
+.ques blockquote {
+	border-left: solid 4px rgb(85,60,207);
+	margin: 0 0 2em 0;
+	padding: 0.5em 0 0.5em 2em;
+}
 	pre {
 		-webkit-overflow-scrolling: touch;
 		background: #f8f8f8;
@@ -250,6 +261,7 @@
 		text-align: right;
 	}
 
+	
 /* Row */
 
 	.row {
@@ -3464,6 +3476,7 @@
 
 			.box {
 				padding: 3em 2em;
+				
 			}
 
 				.box.features > section {
