@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Search</title>
+        <!-- Required meta tags -->
+        <meta charset="utf-8" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1, shrink-to-fit=no"
+        />
+
+        <!-- Bootstrap CSS -->
+        <link
+            rel="stylesheet"
+            href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+            integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+            crossorigin="anonymous"
+        />
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css"
+            integrity="sha512-aOG0c6nPNzGk+5zjwyJaoRUgCdOrfSDhmMID2u4+OIslr0GjpLKo7Xm0Ao3xmpM4T8AmIouRkqwj1nrdVsLKEQ=="
+            crossorigin="anonymous"
+        />
+        <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
+        <script src="https://www.gstatic.com/firebasejs/7.19.0/firebase-app.js"></script>
+
+        <!-- If you enabled Analytics in your project, add the Firebase SDK for Analytics -->
+        <script src="https://www.gstatic.com/firebasejs/7.19.0/firebase-analytics.js"></script>
+
+        <!-- Add Firebase products that you want to use -->
+        <script src="https://www.gstatic.com/firebasejs/7.19.0/firebase-auth.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/7.19.0/firebase-firestore.js"></script>
+    </head>
+    <body>
+        <!-- Optional JavaScript -->
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+        <section>
+            <div class="container pt-4 mb-4">
+                <div class="form-group row">
+                    <input
+                        type="text"
+                        name=""
+                        id="searchInput"
+                        class="form-control col-8"
+                        placeholder="Search Questions Here"
+                    />
+                    <div class="col-4">
+                        <button
+                            type="button"
+                            class="btn btn-primary"
+                            id="searchButton"
+                        >
+                            Search
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+            integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+            crossorigin="anonymous"
+        ></script>
+        <script
+            src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+            crossorigin="anonymous"
+        ></script>
+        <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"
+            integrity="sha512-uto9mlQzrs59VwILcLiRYeLKPPbS/bT71da/OEBYEwcdNUk8jYIy+D176RYoop1Da+f9mvkYrmj5MCLZWEtQuA=="
+            crossorigin="anonymous"
+        ></script>
+        <script>
+            jQuery.ui.autocomplete.prototype._resizeMenu = function () {
+                var ul = this.menu.element;
+                ul.outerWidth(this.element.outerWidth());
+            };
+            $(document).ready(function () {
+                $("#searchInput").autocomplete(
+                    {
+                        source: function (request, response) {
+                            $.ajax({
+                                url: "backend-search.php",
+                                method: "POST",
+                                dataType: "JSON",
+                                data: { query: request.term, sem: 1 },
+                                success: function (data) {
+                                    console.log(data);
+                                    response(data);
+                                },
+                            });
+                        },
+                        select: function (event, ui) {
+                            $("#searchInput").val(ui.item.value);
+                        },
+                    },
+                    {
+                        autofocus: true,
+                        delay: 300,
+                        minLength: 2,
+                    }
+                );
+                $("#searchButton").on("click", function () {
+                    var search = $("#searchInput").val();
+                    $.ajax({
+                        type: "POST",
+                        url: "get_results.php",
+                        data: {
+                            search: search,
+                            sem: 2,
+                        },
+                        success: function (data) {
+                            console.log(data);
+                            try {
+                                window.location.href = JSON.parse(data);
+                            } catch (error) {
+                                alert("Question not found !");
+                            }
+                        },
+                        error: function (e) {
+                            console.log(data);
+                        },
+                    });
+                });
+            });
+        </script>
+    </body>
+</html>

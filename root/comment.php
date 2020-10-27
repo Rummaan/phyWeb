@@ -6,11 +6,13 @@ try{
         $q = $_POST['q'];
         $name = $_POST['name'];
         $uid = $_POST['uid'];
-        $sql = 'INSERT INTO `question` (`q`, `name`, `uid`) VALUES (:q, :n, :u)';
+        $sem = $_POST['sem'];
+        $sql = 'INSERT INTO `question` (`q`, `name`, `uid`, `sem`) VALUES (:q, :n, :u, :s)';
         $stmt = $conn->prepare($sql);
         $stmt->bindParam(':q', $q);
         $stmt->bindParam(':n', $name);
         $stmt->bindParam(':u', $uid);
+        $stmt->bindParam(':s', $sem);
         $stmt->execute();
         exit('success');
     }
@@ -30,8 +32,10 @@ try{
     }
     else if(isset($_POST['l'])){
         $l = $_POST['l'];
-        $sql = 'SELECT * FROM question ORDER BY qid DESC';
+        $sem = $_POST['sem'];
+        $sql = 'SELECT * FROM question WHERE sem = :s ORDER BY qid DESC';
         $stmt = $conn->prepare($sql);
+        $stmt->bindParam(':s', $sem);
         $stmt->execute();
         while ($row = $stmt->fetchObject()) {
             $data['qid'] = $row->qid;

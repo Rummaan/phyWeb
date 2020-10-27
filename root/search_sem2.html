@@ -86,7 +86,7 @@
                                 url: "backend-search.php",
                                 method: "POST",
                                 dataType: "JSON",
-                                data: { query: request.term },
+                                data: { query: request.term, sem: 2},
                                 success: function (data) {
                                     console.log(data);
                                     response(data);
@@ -110,10 +110,15 @@
                         url: "get_results.php",
                         data: {
                             search: search,
+                            sem: 2,
                         },
                         success: function (data) {
                             console.log(data);
-                            window.location.href = JSON.parse(data);
+                            try {
+                                window.location.href = JSON.parse(data);
+                            } catch (error) {
+                                alert("Question not found !");
+                            }
                         },
                         error: function (e) {
                             console.log(data);

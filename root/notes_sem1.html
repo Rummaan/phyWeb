@@ -96,9 +96,7 @@
                         </div>
                     </div>
                     <br /><br />
-                    <div id="comments">
-                        
-                    </div>
+                    <div id="comments"></div>
                 </div>
             </section>
 
@@ -141,6 +139,7 @@
         <script>
             var uidPhy = null;
             var namePhy = null;
+            var sem = 1;
             $(document).ready(function () {
                 var firebase = app_fireBase;
                 firebase.auth().onAuthStateChanged(function (user) {
@@ -160,28 +159,47 @@
                     method: "POST",
                     data: {
                         l: 1,
+                        sem: sem,
                     },
                     success: function (res) {
                         var html = `<h3>Previous Comments</h3>`;
                         console.log(res);
                         var data = JSON.parse(res);
                         console.log(data);
-                        for(ques in data) {
-                            html += `<div id="questions-`+data[ques].qid+`">
+                        for (ques in data) {
+                            html +=
+                                `<div id="questions-` +
+                                data[ques].qid +
+                                `">
                                         <blockquote>
-                                        <h4 style="font-weight: bold">`+data[ques].name+`</h4>`+data[ques].q+`
+                                        <h4 style="font-weight: bold">` +
+                                data[ques].name +
+                                `</h4>` +
+                                data[ques].q +
+                                `
                                         <br /><br />
-                                        <input type="text" name="" id="reply-`+data[ques].qid+`" />
+                                        <input type="text" name="" id="reply-` +
+                                data[ques].qid +
+                                `" />
                                         <br />
-                                        <button type="button" class="button alt" onclick="addReply('`+data[ques].qid+`')">
+                                        <button type="button" class="button alt" onclick="addReply('` +
+                                data[ques].qid +
+                                `')">
                                             Reply
                                         </button>
                                         <br /><br />
-                                        <div id="replies-`+data[ques].qid+`">`;
-                            for(rep in data[ques].replies){
-                                html += ` <blockquote>
-                                            <h4 style="font-weight: bold">`+data[ques].replies[rep].name+`</h4>
-                                            `+data[ques].replies[rep].r+`
+                                        <div id="replies-` +
+                                data[ques].qid +
+                                `">`;
+                            for (rep in data[ques].replies) {
+                                html +=
+                                    ` <blockquote>
+                                            <h4 style="font-weight: bold">` +
+                                    data[ques].replies[rep].name +
+                                    `</h4>
+                                            ` +
+                                    data[ques].replies[rep].r +
+                                    `
                                         </blockquote>`;
                             }
                             html += `    </div>
@@ -204,6 +222,7 @@
                         q: q,
                         name: namePhy,
                         uid: uidPhy,
+                        sem: sem,
                     },
                     success: function (res) {
                         console.log(res);
@@ -215,7 +234,7 @@
                 });
             }
             function addReply(qid) {
-                var r = $("#reply-"+qid).val();
+                var r = $("#reply-" + qid).val();
                 $.ajax({
                     url: "comment.php",
                     method: "POST",

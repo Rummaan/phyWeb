@@ -47,9 +47,7 @@
             <section id="main" class="container">
                 <header>
                     <h2>Notes</h2>
-                    <p>
-                        Engineering Physics 2
-                    </p>
+                    <p>Engineering Physics 2</p>
                 </header>
                 <div class="box">
                     <span class="image featured"
@@ -78,75 +76,27 @@
                         width="100%"
                         height="300px"
                     />
-                    <br><br><br>
-                    <hr>
-                    <h2>Discussion </h2>
-
+                    <br /><br /><br />
+                    <hr />
+                    <h2>Discussion</h2>
                     <div class="row gtr-uniform gtr-50">
                         <div class="col-9 col-12-mobilep">
                             <input
                                 type="text"
                                 name="query"
-                                id="query"
+                                id="question"
                                 value=""
                                 placeholder="Post a Question"
                             />
                         </div>
                         <div class="col-3 col-12-mobilep">
-                            <input
-                                type="submit"
-                                value="Submit"
-                                class="fit"
-                            />
+                            <button type="button" class="button" id="ask">
+                                Submit
+                            </button>
                         </div>
                     </div>
-                    <br><br>
-                    <h3>Previous Comments</h3>
-                            <div class="ques">
-                                <blockquote>
-                                    <h4 style="font-weight: bold;">Amit Ramani</h4>
-                                    My doubt. Donec accumsan interdum nisi,
-                                    quis tincidunt felis sagittis eget tempus
-                                    euismod. tincidunt felis sagittis eget tempus
-                                    euismod.
-                                    <br><br>  
-                                    <a href="#" class="button alt small reply">Reply</a>
-
-                                    <br><br>
-                                    <blockquote>
-                                    <h4 style="font-weight: bold;">Krutik</h4>
-                                    reply ans 1
-                                    </blockquote>
-                                   
-                                    <blockquote>
-                                        <h4 style="font-weight: bold;">Ruudra</h4>
-                                        reply ans 2
-                                    </blockquote>
-                                    
-                                </blockquote>
-                                <hr>
-                                <blockquote>
-                                    <h4 style="font-weight: bold;">Name 2</h4>
-                                    My doubt 2. Donec accumsan interdum nisi,
-                                    quis tincidunt felis sagittis eget tempus
-                                    euismod.
-                                    <br><br>  
-                                    <a href="#" class="button alt small reply">Reply</a>
-                                </blockquote>
-                                <hr>
-                                <blockquote>
-                                    <h4 style="font-weight: bold;">Name 2</h4>
-                                    My doubt 2. Donec accumsan interdum nisi,
-                                    quis tincidunt felis sagittis eget tempus
-                                    euismod.
-                                    <br><br>  
-                                    <a href="#" class="button alt small reply">Reply</a>
-                                </blockquote>
-                            </div>
-
-
-
-
+                    <br /><br />
+                    <div id="comments"></div>
                 </div>
             </section>
 
@@ -186,5 +136,123 @@
         <script src="assets/js/main.js"></script>
         <script src="assets/js/fireBase.js"></script>
         <script src="assets/js/auth.js"></script>
+        <script>
+            var uidPhy = null;
+            var namePhy = null;
+            var sem = 2;
+            $(document).ready(function () {
+                var firebase = app_fireBase;
+                firebase.auth().onAuthStateChanged(function (user) {
+                    if (user) {
+                        // User is signed in.
+                        uidPhy = user.uid;
+                        namePhy = user.providerData[0].displayName;
+                    }
+                });
+                loadComment();
+                $("#ask").on("click", addQuestion);
+            });
+            function loadComment() {
+                var html = "";
+                $.ajax({
+                    url: "comment.php",
+                    method: "POST",
+                    data: {
+                        l: 1,
+                        sem: sem,
+                    },
+                    success: function (res) {
+                        var html = `<h3>Previous Comments</h3>`;
+                        console.log(res);
+                        var data = JSON.parse(res);
+                        console.log(data);
+                        for (ques in data) {
+                            html +=
+                                `<div id="questions-` +
+                                data[ques].qid +
+                                `">
+                                        <blockquote>
+                                        <h4 style="font-weight: bold">` +
+                                data[ques].name +
+                                `</h4>` +
+                                data[ques].q +
+                                `
+                                        <br /><br />
+                                        <input type="text" name="" id="reply-` +
+                                data[ques].qid +
+                                `" />
+                                        <br />
+                                        <button type="button" class="button alt" onclick="addReply('` +
+                                data[ques].qid +
+                                `')">
+                                            Reply
+                                        </button>
+                                        <br /><br />
+                                        <div id="replies-` +
+                                data[ques].qid +
+                                `">`;
+                            for (rep in data[ques].replies) {
+                                html +=
+                                    ` <blockquote>
+                                            <h4 style="font-weight: bold">` +
+                                    data[ques].replies[rep].name +
+                                    `</h4>
+                                            ` +
+                                    data[ques].replies[rep].r +
+                                    `
+                                        </blockquote>`;
+                            }
+                            html += `    </div>
+                                    </div>
+                                    <hr />`;
+                        }
+                        $("#comments").html(html);
+                    },
+                    error: function (e) {
+                        console.log(e);
+                    },
+                });
+            }
+            function addQuestion() {
+                var q = $("#question").val();
+                $.ajax({
+                    url: "comment.php",
+                    method: "POST",
+                    data: {
+                        q: q,
+                        name: namePhy,
+                        uid: uidPhy,
+                        sem: sem,
+                    },
+                    success: function (res) {
+                        console.log(res);
+                        loadComment();
+                    },
+                    error: function (e) {
+                        console.log(e);
+                    },
+                });
+            }
+            function addReply(qid) {
+                var r = $("#reply-" + qid).val();
+                $.ajax({
+                    url: "comment.php",
+                    method: "POST",
+                    data: {
+                        r: r,
+                        qid: qid,
+                        name: namePhy,
+                        uid: uidPhy,
+                    },
+                    success: function (res) {
+                        console.log(res);
+                        loadComment();
+                    },
+                    error: function (e) {
+                        console.log(e);
+                    },
+                });
+            }
+        </script>
     </body>
 </html>
