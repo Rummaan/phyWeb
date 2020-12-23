@@ -85,11 +85,14 @@
                             $.ajax({
                                 url: "backend-search.php",
                                 method: "POST",
-                                dataType: "JSON",
                                 data: { query: request.term, sem: 1 },
                                 success: function (data) {
-                                    console.log(data);
-                                    response(data);
+                                    try {
+                                    response(JSON.parse(data));
+                                    } catch (error) {
+                                        console.log(data);
+                                    }
+                                    
                                 },
                             });
                         },
