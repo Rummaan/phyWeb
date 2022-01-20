@@ -105,7 +105,7 @@
 	}
 
 	body {
-		background: #f5f5f5;
+		background: #f5f5f5f3;
 	}
 
 	body, input, select, textarea {
@@ -142,11 +142,12 @@
 
 	p {
 		margin: 0 0 2em 0;
+		font-weight: 400;
 	}
 
 	h1, h2, h3, h4, h5, h6 {
 		color: #646464;
-		font-weight: 300;
+		font-weight: 500;
 		line-height: 1em;
 		margin: 0 0 0.5em 0;
 	}
@@ -331,9 +332,9 @@
 			margin-left: 25%;
 		}
 
-		.row > .col-4 {
+		/* .row > .col-4 {
 			width: 33.33333%;
-		}
+		} */
 
 		.row > .off-4 {
 			margin-left: 33.33333%;
@@ -1248,6 +1249,9 @@
 				box-sizing: border-box;
 				align-items: stretch;
 			}
+			.row > .col-4 {
+				width: 33.33333%;
+			}
 
 				.row > * {
 					box-sizing: border-box;
@@ -1493,6 +1497,9 @@
 				box-sizing: border-box;
 				align-items: stretch;
 			}
+			.row > .col-4 {
+				width: 33.33333%;
+			}
 
 				.row > * {
 					box-sizing: border-box;
@@ -1737,6 +1744,9 @@
 				flex-wrap: wrap;
 				box-sizing: border-box;
 				align-items: stretch;
+			}
+			.row > .col-4 {
+				width: 33.33333%;
 			}
 
 				.row > * {
@@ -2063,6 +2073,7 @@
 
 		header.major h2 {
 			margin: 0;
+			font-weight: 400;
 		}
 
 		header.major p {
@@ -2072,6 +2083,7 @@
 			margin: 1.5em 0 0 0;
 			padding: 1.5em 0 0 0;
 			font-style: normal;
+			font-weight: 400;
 		}
 
 /* Form */
@@ -2636,6 +2648,9 @@
 				margin-left: 0;
 				width: 100% !important;
 			}
+			.row > .col-4 {
+				width: 33.33333%;
+			}
 
 				ul.actions:not(.fixed) li {
 					-moz-flex-grow: 1;
@@ -2981,6 +2996,7 @@
 			left: 7.75em;
 			top: 0;
 			vertical-align: middle;
+			font-weight: 500;
 		}
 
 			#header nav > ul {
@@ -3199,11 +3215,13 @@
 			line-height: 1em;
 			margin: 0 0 0.5em 0;
 			padding: 0;
+			font-weight: 500;
 		}
 
 		#banner p {
 			font-size: 1.25em;
 			margin-bottom: 1.75em;
+			font-weight: 400;
 		}
 
 		#banner input[type="submit"],
